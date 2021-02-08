@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xj.dao.TblInventoryDao">
+
+    <resultMap id="BaseResultMap" type="com.xj.entity.TblInventory">
+        <id column="good_id" jdbcType="INTEGER" property="goodId"/>
+        <result column="num" jdbcType="INTEGER" property="num"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        good_id, num, update_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_inventory
+        where good_id = #{goodId,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="com.xj.entity.TblInventory">
+      update tbl_inventory
+      set num = #{num,jdbcType=INTEGER},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+      where good_id = #{goodId,jdbcType=INTEGER}
+    </update>
+
+    <insert id="insert" keyColumn="good_id" keyProperty="goodId" parameterType="com.xj.entity.TblInventory"
+            useGeneratedKeys="true">
+      insert into tbl_inventory (num, update_time)
+      values (#{num,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+</mapper>

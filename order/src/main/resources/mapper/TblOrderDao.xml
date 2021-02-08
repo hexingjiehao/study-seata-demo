@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xj.dao.TblOrderDao">
+
+    <resultMap id="BaseResultMap" type="com.xj.entity.TblOrder">
+        <id column="order_id" jdbcType="INTEGER" property="orderId"/>
+        <result column="buyer" jdbcType="VARCHAR" property="buyer"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        order_id, buyer, update_time
+    </sql>
+
+    <insert id="insert" keyColumn="order_id" keyProperty="orderId" parameterType="com.xj.entity.TblOrder"
+            useGeneratedKeys="true">
+      insert into tbl_order (buyer, update_time)
+      values (#{buyer,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+</mapper>
